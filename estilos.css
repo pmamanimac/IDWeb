@@ -1,0 +1,18 @@
+
+body {
+  background-color: rgb(226, 225, 149);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 15px;
+}
+h3 {
+    color: rgb(182, 81, 22);
+}
