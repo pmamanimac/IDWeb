@@ -29,3 +29,12 @@ footer {
   padding: 10px;
   text-align: left;
 }
+#profilePhoto {
+  width: 50%;
+  height: auto;
+}
+#versus {
+  width: 65%;
+  height: auto;
+  border-radius: 10px;
+}
