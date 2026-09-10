@@ -16,3 +16,11 @@ ul.navbar li {
 ul.navbar a {
   text-decoration: none;
 }
+footer {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: thin dotted;
+  font-family: sans-serif;
+  padding: 10px;
+  text-align: left;
+}
