@@ -27,6 +27,37 @@
         <label for="">Constraseña</label>
         <input type="password" id="password" name="password" class="form-input" required pattern="(?=.*\d)(?=.*[A-Z]).{8,}">
       </fieldset>
+      <fieldset>
+        <legend>Aspectos Académicos</legend>
+        <div class="academicblock">
+          <label for="nstudent">Código de estudiante:</label>
+          <input type="number" id="nstudent" name="nstudent" class="form-input" required placeholder="20260203" pattern="[0-9]{8}">
+          <label for="career">Carrera Profesional</label>
+          <select id="career" name="career">
+            <option value=""> -- Elija su Escuela/Programa -- </option>
+            <option value="4010">1. INGENIERÍA AGRONÓMICA </option>
+            <option value="4020">2. BIOLOGÍA </option>
+            <option value="4030">3. CIENCIAS DE LA NUTRICIÓN </option>
+            <option value="4040">4. INGENIERÍA PESQUERA </option>
+            <option value="4050">5. ENFERMERÍA </option>
+            <option value="4060">6. MEDICINA </option>
+            <option value="4310">7. ARQUITECTURA </option>
+            <option value="4320">8. FÍSICA </option>
+            <option value="4330">9. MATEMÁTICAS </option>
+            <option value="4340">10. QUÍMICA </option>
+            <!-- ...............................  -->
+            <!-- codigo prestado de la pagina oficial UNSA-->
+          </select>
+          <div class="shift">
+            <input type="radio" id="morningshift" name="shift" value="morningshift">
+            <label for="morningshift">Mañana</label>
+            <input type="radio" id="afternoonshift" name="shift" value="afternoonshift">
+            <label for="afternoonshift">Tarde</label>
+          </div>
+          <input type="checkbox" id="terminos" name="terminos" required>
+          <label for="terminos">Acepto los términos y condiciones</label>
+        </div>
+      </fieldset>
     </form>
   </body>
 </html>
