@@ -8,16 +8,24 @@
   </head>
   <body>
     <form action="/procesar" method="POST" class="form-container">
+      <h2>Módulo de Registro para el Sistema de Gestión Académica</h2>
       <fieldset>
         <legend>Información Personal</legend>
         <label for="fathername">Apellido Paterno</label>
-        <input type="text" id="fathername" name="fathername" />
+        <input type="text" id="fathername" name="fathername" class="form-input" required/>
         <label for="mothername">Apellido Materno</label>
-        <input type="text" id="mothername" name="mothername" />
+        <input type="text" id="mothername" name="mothername" class="form-input" required/>
         <label for="firstname">Nombres</label>
-        <input type="text" id="firstname" name="firstname" />
+        <input type="text" id="firstname" name="firstname" class="form-input" required/>
         <label for="birthdate">Fecha de Nacimiento</label>
         <input type="date" id="birthdate" name="birthdate" max="2016-12-31" min="1850-01-01"/>
+      </fieldset>
+      <fieldset>
+        <legend>Información de la Cuenta</legend>
+        <label for="email">Correo Institucional:</label>
+        <input type="email" id="email" name="email" class="form-input" required placeholder="usuario@unsa.edu.pe">
+        <label for="">Constraseña</label>
+        <input type="password" id="password" name="password" class="form-input" required pattern="(?=.*\d)(?=.*[A-Z]).{8,}">
       </fieldset>
     </form>
   </body>
