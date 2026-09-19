@@ -6,5 +6,19 @@
     <title>Módulo de Registro para el Sistema de Gestión Académica</title>
     <link rel="stylesheet" href="css/estilos.css" />
   </head>
-  <body></body>
+  <body>
+    <form action="/procesar" method="POST" class="form-container">
+      <fieldset>
+        <legend>Información Personal</legend>
+        <label for="fathername">Apellido Paterno</label>
+        <input type="text" id="fathername" name="fathername" />
+        <label for="mothername">Apellido Materno</label>
+        <input type="text" id="mothername" name="mothername" />
+        <label for="firstname">Nombres</label>
+        <input type="text" id="firstname" name="firstname" />
+        <label for="birthdate">Fecha de Nacimiento</label>
+        <input type="date" id="birthdate" name="birthdate" max="2016-12-31" min="1850-01-01"/>
+      </fieldset>
+    </form>
+  </body>
 </html>
