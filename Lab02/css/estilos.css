@@ -1,6 +1,6 @@
 body {
-  box-sizing: border-box;
-  background-color: beige;
+    box-sizing: border-box;
+    background-color: beige;
 }
 .card{
     background-color: white;
@@ -11,4 +11,17 @@ body {
     border-style: groove;
     box-shadow: 5px 10px #888888;
     padding: 15px;
+}
+.btn:active{
+    background-color: yellow;
+    transform: scale(0.98);
+}
+.btn:focus{
+    background-color: blue;
+}
+.btn:hover{
+    border-color:  aqua;
+}
+#firstname:disabled{
+    opacity: 0.5;
 }
