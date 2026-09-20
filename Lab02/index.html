@@ -12,31 +12,31 @@
       <fieldset>
         <legend>Información Personal</legend>
         <div class="personalinfo">          
-          <label for="fathername">Apellido Paterno</label><br>
+          <label for="fathername" class="form-label">Apellido Paterno</label><br>
           <input type="text" id="fathername" name="fathername" class="form-input" required/><br>
-          <label for="mothername">Apellido Materno</label><br>
+          <label for="mothername" class="form-label">Apellido Materno</label><br>
           <input type="text" id="mothername" name="mothername" class="form-input" required/><br>
-          <label for="firstname">Nombres</label><br>
+          <label for="firstname" class="form-label">Nombres</label><br>
           <input type="text" id="firstname" name="firstname" class="form-input" required/><br>
-          <label for="birthdate">Fecha de Nacimiento</label><br>
+          <label for="birthdate" class="form-label">Fecha de Nacimiento</label><br>
           <input type="date" id="birthdate" name="birthdate" max="2016-12-31" min="1850-01-01"/><br>
         </div>
       </fieldset>
       <fieldset>
         <legend>Información de la Cuenta</legend>
         <div class="accountinfo">
-          <label for="email">Correo Institucional:</label>
+          <label for="email" class="form-label">Correo Institucional:</label>
           <input type="email" id="email" name="email" class="form-input" required placeholder="usuario@unsa.edu.pe"><br>
-          <label for="">Constraseña</label>
+          <label for="password" class="form-label">Constraseña</label>
           <input type="password" id="password" name="password" class="form-input" required pattern="(?=.*\d)(?=.*[A-Z]).{8,}">
         </div>
       </fieldset>
       <fieldset>
         <legend>Aspectos Académicos</legend>
         <div class="academicblock">
-          <label for="nstudent">Código de estudiante:</label>
+          <label for="nstudent" class="form-label">Código de estudiante:</label>
           <input type="number" id="nstudent" name="nstudent" class="form-input" required placeholder="20260203" pattern="[0-9]{8}"><br>
-          <label for="career">Carrera Profesional</label>
+          <label for="career" class="form-label">Carrera Profesional</label>
           <select id="career" name="career">
             <option value=""> -- Elija su Escuela/Programa -- </option>
             <option value="4010">1. INGENIERÍA AGRONÓMICA </option>
@@ -54,16 +54,16 @@
           </select><br>
           <div class="shift">
             <input type="radio" id="morningshift" name="shift" value="morningshift">
-            <label for="morningshift">Mañana</label>
+            <label for="morningshift" class="form-label">Mañana</label>
             <input type="radio" id="afternoonshift" name="shift" value="afternoonshift">
-            <label for="afternoonshift">Tarde</label>
+            <label for="afternoonshift" class="form-label">Tarde</label>
           </div><br>
           <input type="checkbox" id="terminos" name="terminos" required>
-          <label for="terminos">Acepto los términos y condiciones</label>
+          <label for="terminos" class="form-label">Acepto los términos y condiciones</label>
         </div>
       </fieldset><br>
       <div>
-        <label for="comment">Comentarios</label><br>
+        <label for="comment" class="form-label">Comentarios</label><br>
         <textarea name="comment" id="comment"></textarea>
       </div>
       <button type="submit" class="btn">Registrar Datos</button>
