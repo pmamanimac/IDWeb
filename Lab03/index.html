@@ -87,7 +87,109 @@
     </div>
     </section>
     
-    
+    <section id="noticias" class="siga-noticias py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="seccion-kicker">Al día</p>
+        <h2>Noticias y eventos</h2>
+      </div>
+ 
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Semana de becas 2026</h5>
+              <p class="card-text">Convocatoria abierta para estudiantes de alto rendimiento.</p>
+              <button class="btn btn-outline-dark" type="button"
+                      data-bs-toggle="modal" data-bs-target="#modalBecas">Más información
+              </button>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Feria de tecnología</h5>
+              <p class="card-text">Estudiantes presentarán proyectos finales de curso.</p>
+              <button class="btn btn-outline-dark" type="button"
+                      data-bs-toggle="modal" data-bs-target="#modalFeria">Más información</button>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="col-12 col-md-4">
+          <div class="card h-100 shadow-sm mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Nuevo horario de biblioteca</h5>
+              <p class="card-text">Atención extendida durante el periodo de exámenes.</p>
+              <button class="btn btn-outline-dark" type="button"
+                      data-bs-toggle="modal" data-bs-target="#modalBiblioteca">Más información</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <footer id="contacto" class="siga-footer py-4 text-center">
+    <p class="mb-0">© 2026 Universidad Nacional • Sistema de Gestión Académica</p>
+  </footer>
+ 
+  <!-- MODALES de Bootstrap, uno por cada noticia      -->
+  <div class="modal fade" id="modalBecas" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Semana de becas 2026</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>Del 1 al 15 de octubre podrás postular a becas de excelencia académica
+          y apoyo socioeconómico. Revisa los requisitos en la oficina de Bienestar Estudiantil.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="modal fade" id="modalFeria" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Feria de tecnología</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>El 20 de noviembre, en el patio central, más de 40 equipos mostrarán
+          sus proyectos finales. Entrada libre para toda la comunidad.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="modal fade" id="modalBiblioteca" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo horario de biblioteca</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>Durante exámenes finales, la biblioteca atenderá de 7:00 a 23:00,
+          de lunes a sábado.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

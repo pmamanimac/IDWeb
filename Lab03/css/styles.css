@@ -39,7 +39,7 @@ h1, h2, h3, .navbar-brand{
 }
  
 .hero-kicker {
-  color: var(--dorado);
+  color: #C9A227;
   font-weight: 600;
   letter-spacing: 0.04em;
   margin-bottom: 0.5rem;
@@ -94,7 +94,7 @@ h1, h2, h3, .navbar-brand{
 }
 
 .seccion-kicker {
-  color: var(--dorado);
+  color: #C9A227;
   font-weight: 600;
   letter-spacing: 0.04em;
   margin-bottom: 0.25rem;
@@ -121,7 +121,7 @@ h1, h2, h3, .navbar-brand{
  
 .curso-card {
   background: white;
-  border: 1px solid var(--gris-suave);
+  border: 1px solid;
   border-radius: 8px;
   padding: 1.5rem;
   display: flex;
@@ -139,3 +139,11 @@ h1, h2, h3, .navbar-brand{
   margin: 0;
 }
 
+.siga-noticias {
+  background-color: #EFEBDF;
+}
+ 
+.siga-footer {
+  background-color: #3356a3;
+  color: #E3DFD3;
+}
