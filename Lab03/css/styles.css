@@ -1,0 +1,27 @@
+body{
+    font-family: sans-serif;
+    background-color: #eae5d7;
+}
+.encabezado-navbar{
+    background-color: #3356a3;
+}
+.nav-link{
+    color: #eae5d7;
+}
+.navbar-brand{
+    font-family: serif;
+}
+#btn1{
+    color: #d3c59e;
+}
+#btn2{
+    background-color: #C9A227;
+    color: #274077;
+    font-weight: 600;
+    border: none;
+}
+.btn:hover{
+    background-color: #d4ad39;
+    color: white;
+}
+
