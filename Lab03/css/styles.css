@@ -8,7 +8,7 @@ body{
 .nav-link{
     color: #eae5d7;
 }
-.navbar-brand{
+h1, h2, h3, .navbar-brand{
     font-family: serif;
 }
 
@@ -91,5 +91,51 @@ body{
   .hero-descripcion {
     margin: 0 0 1.5rem;
   }
+}
+
+.seccion-kicker {
+  color: var(--dorado);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+ 
+.cursos-grid {
+  display: grid;
+  grid-template-columns: 1fr;   /* Mobile: 1 columna */
+  gap: 1.5rem;
+}
+ 
+@media (min-width: 576px) {
+  .cursos-grid {
+    grid-template-columns: repeat(2, 1fr); /* Tablet: 2 columnas */
+  }
+}
+ 
+@media (min-width: 992px) {
+  .cursos-grid {
+    /* Escritorio: columnas flexibles de mínimo 250px */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+ 
+.curso-card {
+  background: white;
+  border: 1px solid var(--gris-suave);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;       /* Flexbox dentro de cada tarjeta */
+  gap: 0.5rem;
+}
+ 
+.curso-card h3 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+ 
+.curso-card p {
+  color: #55534d;
+  margin: 0;
 }
 
