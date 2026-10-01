@@ -2,6 +2,9 @@
 const form = document.querySelector("#todo-form");
 const input = document.querySelector("#todo-input");
 const list = document.querySelector("#todo-list");
+const cursoInput = document.querySelector("#curso-input");
+const fechaInput = document.querySelector("#fecha-input");
+const alertContainer = document.querySelector("#alert-container");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [
   // Arreglo global de objetos Tarea
@@ -37,19 +40,25 @@ function renderTasks() {
 // Intercepta el evento submit del formulario
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const text = input.value.trim();
-  if (!text) return;
-  //fin de la interceptación del evento
-  tasks.push({
-    id: Date.now(),
-    titulo: text,
-    curso: "Sin curso",
-    fechaEntrega: "",
-    completada: false,
-  });
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-  input.value = "";
-  renderTasks();
+
+  const titulo = input.value.trim();
+  const curso = cursoInput.value.trim();
+  const fechaEntrega = fechaInput.value;
+
+  // Validación: ningún campo vacío
+  if (!titulo || !curso || !fechaEntrega) {
+    mostrarAlerta("Todos los campos son obligatorios.");
+    return;
+  }
+
+  // Validación: fecha posterior a la actual
+  const hoy = new Date().toISOString().split("T")[0];
+  if (fechaEntrega <= hoy) {
+    mostrarAlerta("La fecha de entrega debe ser posterior a la fecha actual.");
+    return;
+  }
+
+  limpiarAlerta();
 });
 
 function deleteTask(index) {
@@ -89,3 +98,15 @@ const agruparPorCurso = () =>
     grupos[task.curso].push(task);
     return grupos;
   }, {});
+
+function mostrarAlerta(mensaje) {
+  alertContainer.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+            ${mensaje}
+        </div>
+    `;
+}
+
+function limpiarAlerta() {
+  alertContainer.innerHTML = "";
+}

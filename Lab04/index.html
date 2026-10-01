@@ -23,17 +23,29 @@
             <div class="card-body">
               <!-- Formulario -->
               <form id="todo-form" class="mb-4">
-                <div class="input-group">
+                <div class="mb-2">
                   <input
                     type="text"
                     id="todo-input"
                     class="form-control"
-                    placeholder="Ingrese una nueva tarea"
+                    placeholder="Título de la tarea"
                     autocomplete="off"
                   />
-
-                  <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
+                <div class="mb-2">
+                  <input
+                    type="text"
+                    id="curso-input"
+                    class="form-control"
+                    placeholder="Curso"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="mb-2">
+                  <input type="date" id="fecha-input" class="form-control" />
+                </div>
+                <div id="alert-container"></div>
+                <button type="submit" class="btn btn-primary">Agregar</button>
               </form>
 
               <!-- Lista de tareas -->
