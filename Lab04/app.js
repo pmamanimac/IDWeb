@@ -164,4 +164,5 @@ filterButtons.forEach((btn) => {
   });
 });
 
-renderTasks();
+// Cargar y renderizar las tareas guardadas al disparar DOMContentLoaded
+document.addEventListener("DOMContentLoaded", renderTasks);
