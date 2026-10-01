@@ -24,16 +24,26 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [
   },
 ];
 
+// Renderizar la lista de tareas dinámicamente
+
 function renderTasks() {
   list.innerHTML = "";
-  tasks.forEach((task, index) => {
+
+  tasks.forEach((task) => {
     const li = document.createElement("li");
     li.className =
       "list-group-item d-flex justify-content-between align-items-center";
+
     li.innerHTML = `
-            <span>${task.titulo}</span>
-            <button class="btn btn-danger btn-sm" onclick="deleteTask(${index})">Eliminar</button>
+            <div>
+                <strong>${task.titulo}</strong><br>
+                <small>${task.curso} - Entrega: ${task.fechaEntrega}</small>
+            </div>
+            <span class="badge bg-${task.completada ? "success" : "warning"}">
+                ${task.completada ? "Completada" : "Pendiente"}
+            </span>
         `;
+
     list.appendChild(li);
   });
 }
@@ -45,13 +55,11 @@ form.addEventListener("submit", (e) => {
   const curso = cursoInput.value.trim();
   const fechaEntrega = fechaInput.value;
 
-  // Validación: ningún campo vacío
   if (!titulo || !curso || !fechaEntrega) {
     mostrarAlerta("Todos los campos son obligatorios.");
     return;
   }
 
-  // Validación: fecha posterior a la actual
   const hoy = new Date().toISOString().split("T")[0];
   if (fechaEntrega <= hoy) {
     mostrarAlerta("La fecha de entrega debe ser posterior a la fecha actual.");
@@ -59,6 +67,23 @@ form.addEventListener("submit", (e) => {
   }
 
   limpiarAlerta();
+
+  const nuevaTarea = {
+    id: Date.now(),
+    titulo,
+    curso,
+    fechaEntrega,
+    completada: false,
+  };
+
+  tasks.push(nuevaTarea);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  input.value = "";
+  cursoInput.value = "";
+  fechaInput.value = "";
+
+  renderTasks();
 });
 
 function deleteTask(index) {
@@ -67,7 +92,7 @@ function deleteTask(index) {
   renderTasks();
 }
 
-document.addEventListener("DOMContentLoaded", renderTasks);
+renderTasks();
 
 //  Métodos iterativos ES6+ sobre el arreglo "tasks"
 
