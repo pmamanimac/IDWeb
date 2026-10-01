@@ -5,6 +5,8 @@ const list = document.querySelector("#todo-list");
 const cursoInput = document.querySelector("#curso-input");
 const fechaInput = document.querySelector("#fecha-input");
 const alertContainer = document.querySelector("#alert-container");
+const filterButtons = document.querySelectorAll("[data-filtro]");
+let filtroActual = "todas";
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [
   // Arreglo global de objetos Tarea
@@ -24,11 +26,17 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [
   },
 ];
 
-// Actualizar renderTasks para incluir el botón de eliminar
 function renderTasks() {
   list.innerHTML = "";
 
-  tasks.forEach((task) => {
+  let tareasFiltradas = tasks;
+  if (filtroActual === "pendientes") {
+    tareasFiltradas = obtenerPendientes();
+  } else if (filtroActual === "completadas") {
+    tareasFiltradas = obtenerCompletadas();
+  }
+
+  tareasFiltradas.forEach((task) => {
     const li = document.createElement("li");
     li.className =
       "list-group-item d-flex justify-content-between align-items-center";
@@ -54,6 +62,18 @@ function renderTasks() {
     list.appendChild(li);
   });
 }
+
+filterButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    filtroActual = btn.dataset.filtro;
+
+    // Actualizar clase "active" en los botones
+    filterButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    renderTasks();
+  });
+});
 // Alternar estado completada/pendiente
 
 function toggleTask(id) {
