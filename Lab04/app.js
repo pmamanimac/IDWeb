@@ -26,6 +26,7 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [
 
 // Renderizar la lista de tareas dinámicamente
 
+// Actualizar renderTasks para incluir el estilo tachado y el botón de alternar
 function renderTasks() {
   list.innerHTML = "";
 
@@ -35,18 +36,34 @@ function renderTasks() {
       "list-group-item d-flex justify-content-between align-items-center";
 
     li.innerHTML = `
-            <div>
+            <div class="${task.completada ? "text-decoration-line-through text-muted" : ""}">
                 <strong>${task.titulo}</strong><br>
                 <small>${task.curso} - Entrega: ${task.fechaEntrega}</small>
             </div>
-            <span class="badge bg-${task.completada ? "success" : "warning"}">
-                ${task.completada ? "Completada" : "Pendiente"}
-            </span>
+            <div>
+                <span class="badge bg-${task.completada ? "success" : "warning"} me-2">
+                    ${task.completada ? "Completada" : "Pendiente"}
+                </span>
+                <button class="btn btn-outline-secondary btn-sm" onclick="toggleTask(${task.id})">
+                    ${task.completada ? "Marcar pendiente" : "Marcar completada"}
+                </button>
+            </div>
         `;
 
     list.appendChild(li);
   });
 }
+// Alternar estado completada/pendiente
+
+function toggleTask(id) {
+  tasks = tasks.map((task) =>
+    task.id === id ? { ...task, completada: !task.completada } : task,
+  );
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderTasks();
+}
+
 // Intercepta el evento submit del formulario
 form.addEventListener("submit", (e) => {
   e.preventDefault();
