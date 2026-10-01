@@ -28,7 +28,7 @@ function renderTasks() {
     li.className =
       "list-group-item d-flex justify-content-between align-items-center";
     li.innerHTML = `
-            <span>${task.text}</span>
+            <span>${task.titulo}</span>
             <button class="btn btn-danger btn-sm" onclick="deleteTask(${index})">Eliminar</button>
         `;
     list.appendChild(li);
@@ -53,3 +53,33 @@ function deleteTask(index) {
 }
 
 document.addEventListener("DOMContentLoaded", renderTasks);
+
+//  Métodos iterativos ES6+ sobre el arreglo "tasks"
+
+// filter: tareas pendientes
+const obtenerPendientes = () => tasks.filter((task) => !task.completada);
+
+// filter: tareas completadas
+const obtenerCompletadas = () => tasks.filter((task) => task.completada);
+
+// map: solo los títulos de las tareas
+const obtenerTitulos = () => tasks.map((task) => task.titulo);
+
+// map: marcar una tarea como completada según su id
+const marcarCompletada = (id) =>
+  tasks.map((task) => (task.id === id ? { ...task, completada: true } : task));
+
+// find: buscar una tarea por su id
+const buscarTareaPorId = (id) => tasks.find((task) => task.id === id);
+
+// reduce: contar tareas completadas
+const contarCompletadas = () =>
+  tasks.reduce((total, task) => (task.completada ? total + 1 : total), 0);
+
+// reduce: agrupar tareas por curso
+const agruparPorCurso = () =>
+  tasks.reduce((grupos, task) => {
+    grupos[task.curso] = grupos[task.curso] || [];
+    grupos[task.curso].push(task);
+    return grupos;
+  }, {});
