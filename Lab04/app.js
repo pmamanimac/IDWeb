@@ -40,7 +40,13 @@ form.addEventListener("submit", (e) => {
   const text = input.value.trim();
   if (!text) return;
 
-  tasks.push({ text, completed: false });
+  tasks.push({
+    id: Date.now(),
+    titulo: text,
+    curso: "Sin curso",
+    fechaEntrega: "",
+    completada: false,
+  });
   localStorage.setItem("tasks", JSON.stringify(tasks));
   input.value = "";
   renderTasks();
