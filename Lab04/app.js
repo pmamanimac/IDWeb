@@ -24,9 +24,7 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [
   },
 ];
 
-// Renderizar la lista de tareas dinámicamente
-
-// Actualizar renderTasks para incluir el estilo tachado y el botón de alternar
+// Actualizar renderTasks para incluir el botón de eliminar
 function renderTasks() {
   list.innerHTML = "";
 
@@ -44,8 +42,11 @@ function renderTasks() {
                 <span class="badge bg-${task.completada ? "success" : "warning"} me-2">
                     ${task.completada ? "Completada" : "Pendiente"}
                 </span>
-                <button class="btn btn-outline-secondary btn-sm" onclick="toggleTask(${task.id})">
+                <button class="btn btn-outline-secondary btn-sm me-1" onclick="toggleTask(${task.id})">
                     ${task.completada ? "Marcar pendiente" : "Marcar completada"}
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="deleteTask(${task.id})">
+                    Eliminar
                 </button>
             </div>
         `;
@@ -103,8 +104,8 @@ form.addEventListener("submit", (e) => {
   renderTasks();
 });
 
-function deleteTask(index) {
-  tasks.splice(index, 1);
+function deleteTask(id) {
+  tasks = tasks.filter((task) => task.id !== id);
   localStorage.setItem("tasks", JSON.stringify(tasks));
   renderTasks();
 }
