@@ -34,12 +34,12 @@ function renderTasks() {
     list.appendChild(li);
   });
 }
-
+// Intercepta el evento submit del formulario
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const text = input.value.trim();
   if (!text) return;
-
+  //fin de la interceptación del evento
   tasks.push({
     id: Date.now(),
     titulo: text,
