@@ -3,7 +3,23 @@ const form = document.querySelector("#todo-form");
 const input = document.querySelector("#todo-input");
 const list = document.querySelector("#todo-list");
 
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [
+  // Arreglo global de objetos Tarea
+  {
+    id: 1,
+    titulo: "Entregar informe de limites",
+    curso: "Calculo en una variable",
+    fechaEntrega: "2026-10-05",
+    completada: false,
+  },
+  {
+    id: 2,
+    titulo: "Repasar Flexbox y Grid",
+    curso: "Desarrollo web",
+    fechaEntrega: "2026-10-10",
+    completada: true,
+  },
+];
 
 function renderTasks() {
   list.innerHTML = "";
