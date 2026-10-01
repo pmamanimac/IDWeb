@@ -1,4 +1,5 @@
 // app.js - Módulo de Gestión
+
 const form = document.querySelector("#todo-form");
 const input = document.querySelector("#todo-input");
 const list = document.querySelector("#todo-list");
@@ -8,8 +9,8 @@ const alertContainer = document.querySelector("#alert-container");
 const filterButtons = document.querySelectorAll("[data-filtro]");
 let filtroActual = "todas";
 
+//Arreglo global de objetos Tarea
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [
-  // Arreglo global de objetos Tarea
   {
     id: 1,
     titulo: "Entregar informe de limites",
@@ -25,6 +26,40 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [
     completada: true,
   },
 ];
+
+// Métodos iterativos ES6+ (movidos arriba para evitar error de orden)
+const obtenerPendientes = () => tasks.filter((task) => !task.completada);
+const obtenerCompletadas = () => tasks.filter((task) => task.completada);
+const obtenerTitulos = () => tasks.map((task) => task.titulo);
+const marcarCompletada = (id) =>
+  tasks.map((task) => (task.id === id ? { ...task, completada: true } : task));
+const buscarTareaPorId = (id) => tasks.find((task) => task.id === id);
+const contarCompletadas = () =>
+  tasks.reduce((total, task) => (task.completada ? total + 1 : total), 0);
+const agruparPorCurso = () =>
+  tasks.reduce((grupos, task) => {
+    grupos[task.curso] = grupos[task.curso] || [];
+    grupos[task.curso].push(task);
+    return grupos;
+  }, {});
+
+// Alertas dinámicas
+function mostrarAlerta(mensaje) {
+  alertContainer.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+            ${mensaje}
+        </div>
+    `;
+}
+
+function limpiarAlerta() {
+  alertContainer.innerHTML = "";
+}
+
+// --> Función centralizada de persistencia
+function guardarTareas() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
 function renderTasks() {
   list.innerHTML = "";
@@ -63,29 +98,22 @@ function renderTasks() {
   });
 }
 
-filterButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    filtroActual = btn.dataset.filtro;
-
-    // Actualizar clase "active" en los botones
-    filterButtons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    renderTasks();
-  });
-});
-// Alternar estado completada/pendiente
-
 function toggleTask(id) {
   tasks = tasks.map((task) =>
     task.id === id ? { ...task, completada: !task.completada } : task,
   );
-
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  guardarTareas();
   renderTasks();
 }
 
-// Intercepta el evento submit del formulario
+// Eliminar tarea
+function deleteTask(id) {
+  tasks = tasks.filter((task) => task.id !== id);
+  guardarTareas();
+  renderTasks();
+}
+
+//Intercepta el submit y valida
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -115,7 +143,7 @@ form.addEventListener("submit", (e) => {
   };
 
   tasks.push(nuevaTarea);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  guardarTareas();
 
   input.value = "";
   cursoInput.value = "";
@@ -124,52 +152,16 @@ form.addEventListener("submit", (e) => {
   renderTasks();
 });
 
-function deleteTask(id) {
-  tasks = tasks.filter((task) => task.id !== id);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-  renderTasks();
-}
+//Filtro visual Todas / Pendientes / Completadas
+filterButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    filtroActual = btn.dataset.filtro;
+
+    filterButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    renderTasks();
+  });
+});
 
 renderTasks();
-
-//  Métodos iterativos ES6+ sobre el arreglo "tasks"
-
-// filter: tareas pendientes
-const obtenerPendientes = () => tasks.filter((task) => !task.completada);
-
-// filter: tareas completadas
-const obtenerCompletadas = () => tasks.filter((task) => task.completada);
-
-// map: solo los títulos de las tareas
-const obtenerTitulos = () => tasks.map((task) => task.titulo);
-
-// map: marcar una tarea como completada según su id
-const marcarCompletada = (id) =>
-  tasks.map((task) => (task.id === id ? { ...task, completada: true } : task));
-
-// find: buscar una tarea por su id
-const buscarTareaPorId = (id) => tasks.find((task) => task.id === id);
-
-// reduce: contar tareas completadas
-const contarCompletadas = () =>
-  tasks.reduce((total, task) => (task.completada ? total + 1 : total), 0);
-
-// reduce: agrupar tareas por curso
-const agruparPorCurso = () =>
-  tasks.reduce((grupos, task) => {
-    grupos[task.curso] = grupos[task.curso] || [];
-    grupos[task.curso].push(task);
-    return grupos;
-  }, {});
-
-function mostrarAlerta(mensaje) {
-  alertContainer.innerHTML = `
-        <div class="alert alert-danger" role="alert">
-            ${mensaje}
-        </div>
-    `;
-}
-
-function limpiarAlerta() {
-  alertContainer.innerHTML = "";
-}
