@@ -42,6 +42,39 @@ const server = http.createServer((req, res) => {
         res.end(data);
       }
     });
+  } else if (req.url === "/api/estudiantes" && req.method === "POST") {
+    let body = "";
+
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+
+    req.on("end", () => {
+      const dataPath = path.join(__dirname, "data", "estudiantes.json");
+
+      fs.readFile(dataPath, "utf-8", (err, data) => {
+        const estudiantes = err ? [] : JSON.parse(data);
+        const nuevoEstudiante = JSON.parse(body);
+        nuevoEstudiante.id = Date.now();
+        estudiantes.push(nuevoEstudiante);
+
+        fs.writeFile(
+          dataPath,
+          JSON.stringify(estudiantes, null, 2),
+          (errEscritura) => {
+            if (errEscritura) {
+              res.writeHead(500, { "Content-Type": "application/json" });
+              res.end(
+                JSON.stringify({ message: "Error al guardar el estudiante" }),
+              );
+            } else {
+              res.writeHead(201, { "Content-Type": "application/json" });
+              res.end(JSON.stringify(nuevoEstudiante));
+            }
+          },
+        );
+      });
+    });
   }
 });
 
