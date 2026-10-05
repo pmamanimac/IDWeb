@@ -30,6 +30,18 @@ const server = http.createServer((req, res) => {
         res.end(content);
       }
     });
+  } else if (req.url === "/api/estudiantes" && req.method === "GET") {
+    const dataPath = path.join(__dirname, "data", "estudiantes.json");
+
+    fs.readFile(dataPath, "utf-8", (err, data) => {
+      if (err) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: "Error al leer los datos" }));
+      } else {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(data);
+      }
+    });
   }
 });
 
