@@ -22,3 +22,23 @@ exports.getCursoById = (req, res) => {
 
   res.status(200).json({ status: "success", data: curso });
 };
+
+exports.createCurso = (req, res) => {
+  const { nombre, codigo, creditos } = req.body;
+
+  if (!nombre || !codigo || !creditos) {
+    return res
+      .status(400)
+      .json({ status: "fail", message: "Faltan campos obligatorios" });
+  }
+
+  const nuevoCurso = {
+    id: cursos.length > 0 ? cursos[cursos.length - 1].id + 1 : 1,
+    nombre,
+    codigo,
+    creditos: Number(creditos),
+  };
+
+  cursos.push(nuevoCurso);
+  res.status(201).json({ status: "success", data: nuevoCurso });
+};
