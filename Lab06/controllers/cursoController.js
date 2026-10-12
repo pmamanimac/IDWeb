@@ -10,3 +10,15 @@ exports.getAllCursos = (req, res) => {
 
   res.status(200).json({ status: "success", data: resultado });
 };
+
+exports.getCursoById = (req, res) => {
+  const curso = cursos.find((c) => c.id === Number(req.params.id));
+
+  if (!curso) {
+    return res
+      .status(404)
+      .json({ status: "fail", message: "Curso no encontrado" });
+  }
+
+  res.status(200).json({ status: "success", data: curso });
+};
