@@ -42,3 +42,21 @@ exports.createCurso = (req, res) => {
   cursos.push(nuevoCurso);
   res.status(201).json({ status: "success", data: nuevoCurso });
 };
+
+exports.updateCurso = (req, res) => {
+  const curso = cursos.find((c) => c.id === Number(req.params.id));
+
+  if (!curso) {
+    return res
+      .status(404)
+      .json({ status: "fail", message: "Curso no encontrado" });
+  }
+
+  const { nombre, codigo, creditos } = req.body;
+
+  if (nombre) curso.nombre = nombre;
+  if (codigo) curso.codigo = codigo;
+  if (creditos) curso.creditos = Number(creditos);
+
+  res.status(200).json({ status: "success", data: curso });
+};
