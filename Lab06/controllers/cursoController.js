@@ -60,3 +60,18 @@ exports.updateCurso = (req, res) => {
 
   res.status(200).json({ status: "success", data: curso });
 };
+
+exports.deleteCurso = (req, res) => {
+  const index = cursos.findIndex((c) => c.id === Number(req.params.id));
+
+  if (index === -1) {
+    return res
+      .status(404)
+      .json({ status: "fail", message: "Curso no encontrado" });
+  }
+
+  cursos.splice(index, 1);
+  res
+    .status(200)
+    .json({ status: "success", message: "Curso eliminado correctamente" });
+};
